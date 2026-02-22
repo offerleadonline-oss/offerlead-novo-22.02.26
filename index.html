@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OfferLead | Sua Máquina de Vendas no Ar em 3 Dias</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="https://i.postimg.cc/SRp3Z88Y/Offer_Lead_Brand_Copia_removebg_preview.png">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- FontAwesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        dark: {
+                            900: '#0B0F19',
+                            800: '#111827',
+                            700: '#1F2937',
+                        },
+                        gold: {
+                            light: '#FDE047',
+                            DEFAULT: '#EAB308',
+                            dark: '#A16207',
+                        }
+                    },
+                    backgroundImage: {
+                        'metallic-gold': 'linear-gradient(to right, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C)',
+                        'metallic-silver': 'linear-gradient(to right, #8a8a8a, #c0c0c0, #e8e8e8, #c0c0c0, #8a8a8a)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom Styles -->
+    <style>
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #0B0F19;
+            color: #F3F4F6;
+        }
+        
+        .text-gradient-gold {
+            background: linear-gradient(to right, #BF953F, #FCF6BA, #B38728);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .btn-pulse {
+            animation: pulse-gold 2s infinite;
+        }
+
+        @keyframes pulse-gold {
+            0% { box-shadow: 0 0 0 0 rgba(191, 149, 63, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(191, 149, 63, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(191, 149, 63, 0); }
+        }
+
+        .glass-card {
+            background: rgba(31, 41, 55, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Ocultar barra de rolagem nativa para o carrossel, mantendo a funcionalidade */
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Scrollbar customizada para os modais */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #111827;
+            border-radius: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #374151;
+            border-radius: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #4B5563;
+        }
+    </style>
+</head>
+<body class="antialiased overflow-x-hidden">
+
+    <!-- NAVBAR -->
+    <nav class="fixed w-full z-50 bg-dark-900/90 backdrop-blur-md border-b border-gray-800 transition-all duration-300" id="navbar">
+        <div class="container mx-auto px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <a href="#" class="flex-shrink-0">
+                    <img src="https://i.postimg.cc/bNRcB6mX/Offer_Lead_Brand.png" alt="Logo OfferLead" class="h-10 object-contain">
+                </a>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#beneficios" class="text-gray-300 hover:text-gold-DEFAULT transition-colors text-sm font-medium">Benefícios</a>
+                    <a href="#portfolio" class="text-gray-300 hover:text-gold-DEFAULT transition-colors text-sm font-medium">Portfólio</a>
+                    <a href="#oferta" class="text-gray-300 hover:text-gold-DEFAULT transition-colors text-sm font-medium">Planos</a>
+                    <a href="#faq" class="text-gray-300 hover:text-gold-DEFAULT transition-colors text-sm font-medium">FAQ</a>
+                </div>
+
+                <!-- CTA & Mobile Toggle -->
+                <div class="flex items-center gap-4">
+                    <a href="#oferta" class="hidden md:inline-block bg-metallic-gold text-dark-900 font-bold px-6 py-2 rounded-lg shadow-lg hover:scale-105 transition-transform duration-300 text-sm">
+                        Começar Agora
+                    </a>
+                    <!-- Mobile menu button -->
+                    <button class="md:hidden text-gray-300 hover:text-white focus:outline-none" onclick="toggleMobileMenu()">
+                        <i class="fa-solid fa-bars text-2xl" id="menuIcon"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div class="md:hidden hidden bg-dark-800 border-b border-gray-800 absolute w-full" id="mobileMenu">
+            <div class="px-4 pt-2 pb-6 space-y-2 shadow-2xl">
+                <a href="#beneficios" class="block px-3 py-3 text-base font-medium text-gray-300 hover:text-gold-DEFAULT hover:bg-dark-700 rounded-md" onclick="toggleMobileMenu()">Benefícios</a>
+                <a href="#portfolio" class="block px-3 py-3 text-base font-medium text-gray-300 hover:text-gold-DEFAULT hover:bg-dark-700 rounded-md" onclick="toggleMobileMenu()">Portfólio</a>
+                <a href="#oferta" class="block px-3 py-3 text-base font-medium text-gray-300 hover:text-gold-DEFAULT hover:bg-dark-700 rounded-md" onclick="toggleMobileMenu()">Planos</a>
+                <a href="#faq" class="block px-3 py-3 text-base font-medium text-gray-300 hover:text-gold-DEFAULT hover:bg-dark-700 rounded-md" onclick="toggleMobileMenu()">FAQ</a>
+                <a href="#oferta" class="block w-full text-center mt-4 bg-metallic-gold text-dark-900 font-bold px-6 py-3 rounded-lg shadow-lg" onclick="toggleMobileMenu()">
+                    Começar Agora
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- SEÇÃO 1: HERO (A GRANDE PROMESSA) -->
+    <header class="relative pt-32 pb-24 lg:pt-40 lg:pb-32 overflow-hidden bg-dark-900 border-b border-gray-800">
+        <!-- Elemento Decorativo Background -->
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-7xl">
+            <div class="absolute top-[-20%] left-[-10%] w-[500px] h-[500px] rounded-full bg-gold-dark/20 blur-[120px]"></div>
+        </div>
+
+        <div class="relative container mx-auto px-6 lg:px-8 z-10">
+            <div class="flex flex-col lg:flex-row items-center gap-12">
+                <div class="lg:w-1/2 text-center lg:text-left">
+                    <span class="inline-block py-1 px-3 rounded-full bg-dark-700 border border-gold-dark/30 text-gold-light text-sm font-semibold mb-6 uppercase tracking-wider">
+                        <i class="fa-solid fa-bolt mr-2"></i> Lançamento Exclusivo
+                    </span>
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight mb-6 leading-tight">
+                        Tenha Seu Site ou Landing Page de Alta Conversão no Ar em <span class="text-gradient-gold">Até 3 Dias</span>
+                    </h1>
+                    <p class="text-lg md:text-xl text-gray-400 mb-4 font-medium">
+                        (Sem Precisar Tocar em Nenhuma Linha de Código)
+                    </p>
+                    <p class="text-base md:text-lg text-gray-300 mb-10 leading-relaxed">
+                        Nós fazemos todo o trabalho técnico e de design para você. Atraia mais clientes, transmita autoridade e venda todos os dias com uma máquina de vendas profissional.
+                    </p>
+                    <a href="#oferta" class="inline-block bg-metallic-gold text-dark-900 font-bold text-lg md:text-xl py-4 px-8 rounded-lg shadow-lg hover:scale-105 transition-transform duration-300 btn-pulse w-full md:w-auto text-center">
+                        Quero minha página profissional pronta agora! <i class="fa-solid fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+                <div class="lg:w-1/2 w-full flex justify-center">
+                    <img src="https://i.postimg.cc/FKM7gCrZ/mockup.png" alt="Mockup de Landing Page Profissional" class="w-full max-w-lg drop-shadow-[0_0_40px_rgba(191,149,63,0.3)] hover:-translate-y-2 transition-transform duration-500">
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- SEÇÃO 2: PROBLEMA/DORES -->
+    <section class="py-20 bg-dark-800">
+        <div class="container mx-auto px-6 lg:px-8 max-w-5xl">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold leading-tight mb-4">
+                    Você está perdendo vendas todos os dias por <span class="text-red-500">não ter uma presença online profissional?</span>
+                </h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-red-500 to-red-800 mx-auto rounded-full"></div>
+            </div>
+
+            <div class="space-y-6">
+                <!-- Bullet 1 -->
+                <div class="glass-card p-6 md:p-8 rounded-2xl flex items-start gap-4 transform transition hover:-translate-y-1">
+                    <div class="flex-shrink-0 mt-1">
+                        <i class="fa-solid fa-circle-xmark text-red-500 text-2xl"></i>
+                    </div>
+                    <div>
+                        <p class="text-lg text-gray-300 leading-relaxed">
+                            Você sabe que precisa de um site para passar credibilidade e fechar clientes mais caros, mas só de pensar em lidar com ferramentas complicadas, plugins e códigos, já sente dor de cabeça.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Bullet 2 -->
+                <div class="glass-card p-6 md:p-8 rounded-2xl flex items-start gap-4 transform transition hover:-translate-y-1">
+                    <div class="flex-shrink-0 mt-1">
+                        <i class="fa-solid fa-circle-xmark text-red-500 text-2xl"></i>
+                    </div>
+                    <div>
+                        <p class="text-lg text-gray-300 leading-relaxed">
+                            Já tentou usar aqueles "criadores de sites gratuitos" no estilo faça-você-mesmo, mas o resultado ficou amador, o site ficou lento e, no final, não trouxe um único cliente real para o seu negócio.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Bullet 3 -->
+                <div class="glass-card p-6 md:p-8 rounded-2xl flex items-start gap-4 transform transition hover:-translate-y-1">
+                    <div class="flex-shrink-0 mt-1">
+                        <i class="fa-solid fa-circle-xmark text-red-500 text-2xl"></i>
+                    </div>
+                    <div>
+                        <p class="text-lg text-gray-300 leading-relaxed">
+                            Sente a frustração profunda de ver seus concorrentes crescendo e dominando o mercado, não porque têm um serviço melhor que o seu, mas simplesmente porque possuem uma página profissional enquanto você ainda depende só do "boca a boca".
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO 3: APRESENTAÇÃO DA SOLUÇÃO -->
+    <section class="py-20 bg-dark-900 border-y border-gray-800">
+        <div class="container mx-auto px-6 lg:px-8 max-w-4xl text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">
+                Apresentando o Serviço Premium de Criação de Sites da <span class="text-gradient-gold">OfferLead</span>
+            </h2>
+            <p class="text-lg md:text-xl text-gray-300 mb-8 leading-relaxed">
+                Chega de travar no digital tentando aprender design ou programação enquanto o seu negócio fica estagnado. Nós da OfferLead assumimos 100% da criação da sua Landing Page ou Site.
+            </p>
+            <div class="bg-dark-800/50 p-6 md:p-8 rounded-2xl border border-gray-700 shadow-lg text-left inline-block w-full">
+                <p class="text-lg text-gray-300 leading-relaxed border-l-4 border-gold-DEFAULT pl-4">
+                    Entregamos uma verdadeira máquina de vendas pronta, rápida e otimizada com técnicas de copy para converter os seus visitantes em clientes reais, tudo isso num prazo recorde de <strong>até 3 dias</strong>.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO 4: BENEFÍCIOS -->
+    <section id="beneficios" class="py-20 bg-dark-800 relative overflow-hidden">
+        <div class="container mx-auto px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold">O que você vai <span class="text-gradient-gold">conquistar</span></h2>
+                <div class="w-24 h-1 bg-metallic-gold mx-auto rounded-full mt-4"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Benefício 1 -->
+                <div class="glass-card p-8 rounded-2xl border-t-4 border-t-gold-DEFAULT">
+                    <div class="w-14 h-14 rounded-full bg-dark-700 flex items-center justify-center mb-6 border border-gold-dark/50">
+                        <i class="fa-solid fa-crosshairs text-gold-DEFAULT text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-white">Design de Alta Conversão</h3>
+                    <p class="text-gray-400 leading-relaxed">
+                        Você não vai receber apenas um "site bonito", mas uma página estrategicamente estruturada para capturar a atenção do visitante e guiá-lo direto para o botão de compra ou WhatsApp.
+                    </p>
+                </div>
+
+                <!-- Benefício 2 -->
+                <div class="glass-card p-8 rounded-2xl border-t-4 border-t-gold-DEFAULT">
+                    <div class="w-14 h-14 rounded-full bg-dark-700 flex items-center justify-center mb-6 border border-gold-dark/50">
+                        <i class="fa-solid fa-mug-hot text-gold-DEFAULT text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-white">Foco Total no Seu Negócio</h3>
+                    <p class="text-gray-400 leading-relaxed">
+                        Economize dezenas de horas de estresse e frustração. Você não precisa apertar nenhum botão; nós fazemos todo o trabalho pesado para que você ganhe tempo e foque em atender seus novos clientes.
+                    </p>
+                </div>
+
+                <!-- Benefício 3 -->
+                <div class="glass-card p-8 rounded-2xl border-t-4 border-t-gold-DEFAULT">
+                    <div class="w-14 h-14 rounded-full bg-dark-700 flex items-center justify-center mb-6 border border-gold-dark/50">
+                        <i class="fa-solid fa-crown text-gold-DEFAULT text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-white">Autoridade Instantânea</h3>
+                    <p class="text-gray-400 leading-relaxed">
+                        Deixe seus clientes impressionados logo no primeiro clique. Transmita confiança absoluta, eleve o valor percebido do seu serviço e posicione-se como o líder e especialista do seu mercado.
+                    </p>
+                </div>
+
+                <!-- Benefício 4 -->
+                <div class="glass-card p-8 rounded-2xl border-t-4 border-t-gold-DEFAULT">
+                    <div class="w-14 h-14 rounded-full bg-dark-700 flex items-center justify-center mb-6 border border-gold-dark/50">
+                        <i class="fa-solid fa-rocket text-gold-DEFAULT text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-white">Processo 100% Descomplicado</h3>
+                    <p class="text-gray-400 leading-relaxed">
+                        Zero dor de cabeça com configurações técnicas, integrações chatas ou servidores caindo. Você aprova o projeto e nós colocamos tudo no ar funcionando perfeitamente.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO 4.5: PORTFÓLIO (CARROSSEL) -->
+    <section id="portfolio" class="py-24 bg-dark-900 border-t border-gray-800 relative overflow-hidden">
+        <div class="container mx-auto px-6 lg:px-8 max-w-7xl">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Veja o nível das <span class="text-gradient-gold">Páginas que Criamos</span></h2>
+                <p class="text-gray-400 text-lg">Arraste para o lado e confira alguns de nossos projetos recentes de alta conversão.</p>
+            </div>
+
+            <div class="relative group">
+                <!-- Botão Anterior -->
+                <button onclick="scrollCarousel(-1)" class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 md:-translate-x-6 z-20 w-12 h-12 bg-dark-800 border border-gray-700 rounded-full flex items-center justify-center text-gold-DEFAULT shadow-[0_0_15px_rgba(0,0,0,0.5)] hover:bg-dark-700 hover:scale-110 transition-all focus:outline-none hidden md:flex opacity-0 group-hover:opacity-100">
+                    <i class="fa-solid fa-chevron-left text-xl"></i>
+                </button>
+
+                <!-- Container do Carrossel -->
+                <div id="portfolioCarousel" class="flex overflow-x-auto snap-x snap-mandatory gap-6 pb-8 pt-4 hide-scrollbar scroll-smooth">
+                    
+                    <!-- Item 1 -->
+                    <div class="snap-center shrink-0 w-[85%] sm:w-[60%] md:w-[45%] lg:w-[30%] group/item perspective-1000">
+                        <div class="relative rounded-2xl overflow-hidden border border-gray-700 shadow-xl transition-transform duration-500 group-hover/item:-translate-y-2 group-hover/item:shadow-[0_15px_30px_rgba(191,149,63,0.15)] bg-dark-800">
+                            <!-- Barra superior estilo navegador -->
+                            <div class="bg-dark-900 px-4 py-3 flex gap-2 border-b border-gray-800">
+                                <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
+                                <div class="w-3 h-3 rounded-full bg-yellow-500/80"></div>
+                                <div class="w-3 h-3 rounded-full bg-green-500/80"></div>
+                            </div>
+                            <img src="https://i.postimg.cc/sXdn4cZy/1.png" alt="Portfólio OfferLead 1" class="w-full h-[450px] object-cover object-top">
+                        </div>
+                    </div>
+
+                    <!-- Item 2 -->
+                    <div class="snap-center shrink-0 w-[85%] sm:w-[60%] md:w-[45%] lg:w-[30%] group/item perspective-1000">
+                        <div class="relative rounded-2xl overflow-hidden border border-gray-700 shadow-xl transition-transform duration-500 group-hover/item:-translate-y-2 group-hover/item:shadow-[0_15px_30px_rgba(191,149,63,0.15)] bg-dark-800">
+                            <div class="bg-dark-900 px-4 py-3 flex gap-2 border-b border-gray-800">
+                                <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
+                                <div class="w-3 h-3 rounded-full bg-yellow-500/80"></div>
+                                <div class="w-3 h-3 rounded-full bg-green-500/80"></div>
+                            </div>
+                            <img src="https://i.postimg.cc/N0rJXVLY/2.png" alt="Portfólio OfferLead 2" class="w-full h-[450px] object-cover object-top">
+                        </div>
+                    </div>
+
+                    <!-- Item 3 -->
+                    <div class="snap-center shrink-0 w-[85%] sm:w-[60%] md:w-[45%] lg:w-[30%] group/item perspective-1000">
+                        <div class="relative rounded-2xl overflow-hidden border border-gray-700 shadow-xl transition-transform duration-500 group-hover/item:-translate-y-2 group-hover/item:shadow-[0_15px_30px_rgba(191,149,63,0.15)] bg-dark-800">
+                            <div class="bg-dark-900 px-4 py-3 flex gap-2 border-b border-gray-800">
+                                <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
+                                <div class="w-3 h-3 rounded-full bg-yellow-500/80"></div>
+                                <div class="w-3 h-3 rounded-full bg-green-500/80"></div>
+                            </div>
+                            <img src="https://i.postimg.cc/g06Sh5rb/3.png" alt="Portfólio OfferLead 3" class="w-full h-[450px] object-cover object-top">
+                        </div>
+                    </div>
+
+                    <!-- Item 4 -->
+                    <div class="snap-center shrink-0 w-[85%] sm:w-[60%] md:w-[45%] lg:w-[30%] group/item perspective-1000">
+                        <div class="relative rounded-2xl overflow-hidden border border-gray-700 shadow-xl transition-transform duration-500 group-hover/item:-translate-y-2 group-hover/item:shadow-[0_15px_30px_rgba(191,149,63,0.15)] bg-dark-800">
+                            <div class="bg-dark-900 px-4 py-3 flex gap-2 border-b border-gray-800">
+                                <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
+                                <div class="w-3 h-3 rounded-full bg-yellow-500/80"></div>
+                                <div class="w-3 h-3 rounded-full bg-green-500/80"></div>
+                            </div>
+                            <img src="https://i.postimg.cc/DwhpG5Ly/4.png" alt="Portfólio OfferLead 4" class="w-full h-[450px] object-cover object-top">
+                        </div>
+                    </div>
+
+                    <!-- Item 5 -->
+                    <div class="snap-center shrink-0 w-[85%] sm:w-[60%] md:w-[45%] lg:w-[30%] group/item perspective-1000">
+                        <div class="relative rounded-2xl overflow-hidden border border-gray-700 shadow-xl transition-transform duration-500 group-hover/item:-translate-y-2 group-hover/item:shadow-[0_15px_30px_rgba(191,149,63,0.15)] bg-dark-800">
+                            <div class="bg-dark-900 px-4 py-3 flex gap-2 border-b border-gray-800">
+                                <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
+                                <div class="w-3 h-3 rounded-full bg-yellow-500/80"></div>
+                                <div class="w-3 h-3 rounded-full bg-green-500/80"></div>
+                            </div>
+                            <img src="https://i.postimg.cc/SNhf1RRh/5.png" alt="Portfólio OfferLead 5" class="w-full h-[450px] object-cover object-top">
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Botão Próximo -->
+                <button onclick="scrollCarousel(1)" class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 md:translate-x-6 z-20 w-12 h-12 bg-dark-800 border border-gray-700 rounded-full flex items-center justify-center text-gold-DEFAULT shadow-[0_0_15px_rgba(0,0,0,0.5)] hover:bg-dark-700 hover:scale-110 transition-all focus:outline-none hidden md:flex opacity-0 group-hover:opacity-100">
+                    <i class="fa-solid fa-chevron-right text-xl"></i>
+                </button>
+            </div>
+            
+            <!-- Indicador Mobile -->
+            <div class="flex justify-center gap-2 mt-4 md:hidden">
+                <div class="w-2 h-2 rounded-full bg-gold-DEFAULT"></div>
+                <div class="w-2 h-2 rounded-full bg-gray-600"></div>
+                <div class="w-2 h-2 rounded-full bg-gray-600"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO 5 E 6: OFERTA & BÔNUS -->
+    <section id="oferta" class="py-24 bg-dark-900 relative">
+        <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-5"></div>
+        <div class="container mx-auto px-6 lg:px-8 relative z-10 max-w-6xl">
+            
+            <div class="flex flex-col lg:flex-row gap-8 items-stretch">
+                
+                <!-- OFERTA A (PLANO BÁSICO) -->
+                <div class="lg:w-1/2 rounded-3xl p-1 bg-metallic-gold shadow-[0_0_50px_rgba(191,149,63,0.15)] relative transform lg:scale-105 z-20">
+                    <div class="bg-dark-900 rounded-[22px] h-full p-8 md:p-10 flex flex-col justify-between">
+                        <div>
+                            <div class="inline-block bg-gold-dark/20 text-gold-DEFAULT font-bold px-4 py-1 rounded-full text-sm mb-6 border border-gold-dark/30">
+                                OFERTA ESPECIAL
+                            </div>
+                            <h2 class="text-3xl font-bold mb-4">Comece Agora</h2>
+                            <p class="text-gray-400 mb-8">O empurrão que faltava para digitalizar suas vendas profissionalmente.</p>
+                            
+                            <div class="mb-8">
+                                <p class="text-gray-500 line-through text-lg">De R$ 997,00</p>
+                                <div class="flex items-baseline gap-2">
+                                    <span class="text-5xl font-extrabold text-white">R$ 497</span>
+                                    <span class="text-xl text-gray-400">,00</span>
+                                </div>
+                                <p class="text-green-400 text-sm font-semibold mt-2"><i class="fa-solid fa-tag"></i> Você economiza R$ 500,00 hoje</p>
+                            </div>
+
+                            <ul class="space-y-4 mb-10">
+                                <li class="flex items-center gap-3 text-gray-300">
+                                    <i class="fa-solid fa-check text-gold-DEFAULT"></i> Landing Page de Alta Conversão
+                                </li>
+                                <li class="flex items-center gap-3 text-gray-300">
+                                    <i class="fa-solid fa-check text-gold-DEFAULT"></i> Design Mobile-First (Responsivo)
+                                </li>
+                                <li class="flex items-center gap-3 text-gray-300">
+                                    <i class="fa-solid fa-check text-gold-DEFAULT"></i> Botões de WhatsApp Dinâmicos
+                                </li>
+                                <li class="flex items-center gap-3 text-gray-300">
+                                    <i class="fa-solid fa-check text-gold-DEFAULT"></i> Entrega em até 3 dias úteis
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <a href="#" class="block w-full text-center bg-metallic-gold text-dark-900 font-bold text-lg py-5 rounded-xl shadow-[0_10px_20px_rgba(191,149,63,0.3)] hover:scale-[1.02] transition-transform btn-pulse">
+                            Sim! Quero criar meu site com R$ 500 de Desconto
+                        </a>
+                        <p class="text-center text-xs text-gray-500 mt-4"><i class="fa-solid fa-lock"></i> Pagamento 100% Seguro</p>
+                    </div>
+                </div>
+
+                <!-- OFERTA B (BÔNUS) -->
+                <div class="lg:w-1/2 glass-card rounded-3xl p-8 md:p-10 flex flex-col justify-center border border-gray-700">
+                    <h2 class="text-2xl md:text-3xl font-bold mb-8">Leve também estes <span class="text-gradient-gold">Bônus Exclusivos:</span></h2>
+                    
+                    <div class="space-y-6">
+                        <!-- Bônus 1 -->
+                        <div class="flex gap-4 p-4 rounded-xl bg-dark-800/50 border border-gray-700">
+                            <div class="text-gold-DEFAULT text-3xl mt-1">
+                                <i class="fa-solid fa-headset"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg mb-1">Suporte VIP por 30 Dias</h4>
+                                <p class="text-sm text-gray-400 mb-2">Valor: <span class="line-through text-red-400">R$ 297,00</span> - <strong class="text-green-400 uppercase">HOJE: Grátis</strong></p>
+                                <p class="text-sm text-gray-300 leading-relaxed">Precisa de algum ajuste ou ficou com dúvida após a entrega? Nossa equipe estará à sua disposição por um mês inteiro para garantir que tudo continue rodando com perfeição.</p>
+                            </div>
+                        </div>
+
+                        <!-- Bônus 2 -->
+                        <div class="flex gap-4 p-4 rounded-xl bg-dark-800/50 border border-gray-700">
+                            <div class="text-gold-DEFAULT text-3xl mt-1">
+                                <i class="fa-solid fa-list-check"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg mb-1">Checklist: Seu Site para Anúncios</h4>
+                                <p class="text-sm text-gray-400 mb-2">Valor: <span class="line-through text-red-400">R$ 97,00</span> - <strong class="text-green-400 uppercase">HOJE: Grátis</strong></p>
+                                <p class="text-sm text-gray-300 leading-relaxed">Um guia rápido mostrando exatamente o que você precisa conferir na sua nova página antes de começar a enviar tráfego pago (Google Ads) para escalar suas vendas.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO 7: GARANTIA -->
+    <section class="py-20 bg-dark-800 border-y border-gray-800">
+        <div class="container mx-auto px-6 lg:px-8 max-w-4xl text-center">
+            
+            <!-- Selo de Garantia em CSS/HTML -->
+            <div class="mx-auto mb-10 relative w-40 h-40 flex items-center justify-center group">
+                <!-- Efeito de Brilho Fundo -->
+                <div class="absolute inset-0 bg-gold-DEFAULT/20 rounded-full blur-2xl animate-pulse"></div>
+                
+                <!-- Borda Tracejada Giratória -->
+                <div class="absolute inset-2 rounded-full border-2 border-dashed border-gold-DEFAULT/40 animate-[spin_15s_linear_infinite]"></div>
+                
+                <!-- Corpo do Selo -->
+                <div class="relative z-10 w-32 h-32 bg-gradient-to-b from-dark-800 to-dark-900 rounded-full border-[3px] border-gold-DEFAULT shadow-[0_0_30px_rgba(191,149,63,0.4)] flex flex-col items-center justify-center transform group-hover:scale-110 transition-transform duration-500">
+                    <i class="fa-solid fa-award text-4xl text-gold-DEFAULT mb-1 drop-shadow-[0_2px_8px_rgba(191,149,63,0.6)]"></i>
+                    <span class="text-white font-black text-xs uppercase tracking-widest mt-1">Risco</span>
+                    <span class="text-gold-DEFAULT font-extrabold text-2xl leading-none">ZERO</span>
+                </div>
+            </div>
+
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">Risco <span class="text-gradient-gold">Zero</span></h2>
+            <p class="text-lg md:text-xl text-gray-300 leading-relaxed">
+                Você está 100% protegido pela nossa <strong>Garantia Incondicional de entrega</strong>. Se você não aprovar o seu site e achar que o design não ficou profissional ou que não cumprimos a promessa de entrega, basta enviar um único e-mail ou mensagem. Nós devolvemos cada centavo do seu investimento, sem burocracia e sem ressentimentos. <strong>O risco está todo nas nossas costas.</strong>
+            </p>
+        </div>
+    </section>
+
+    <!-- SEÇÃO 8: SOBRE O AUTOR -->
+    <section class="py-20 bg-dark-900">
+        <div class="container mx-auto px-6 lg:px-8 max-w-5xl">
+            <div class="flex flex-col md:flex-row items-center gap-10 md:gap-16">
+                <div class="md:w-1/3 flex justify-center">
+                    <img src="https://i.postimg.cc/pTrqzTd1/Harlei-Cruz.jpg" alt="Foto de Harlei Cruz" class="rounded-full w-48 h-48 object-cover border-4 border-gray-700 shadow-xl grayscale hover:grayscale-0 transition duration-500">
+                </div>
+                <div class="md:w-2/3 text-center md:text-left">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-2">Quem é <span class="text-gradient-gold">Harlei Cruz?</span></h2>
+                    <h3 class="text-xl text-gold-DEFAULT font-medium mb-6">Fundador da OfferLead</h3>
+                    <p class="text-gray-300 text-lg leading-relaxed">
+                        Especialista em Marketing de Resposta Direta e Google Ads, Harlei Cruz é o fundador da OfferLead, focada em transformar cliques em lucro real. Com vasta experiência construindo verdadeiras "máquinas de vendas 24/7" para negócios locais e infoprodutores, Harlei sabe exatamente o que uma página precisa ter para parar de ser apenas um panfleto digital inútil e começar a colocar dinheiro de verdade no seu bolso.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO 9: FAQ -->
+    <section id="faq" class="py-20 bg-dark-800 border-t border-gray-800">
+        <div class="container mx-auto px-6 lg:px-8 max-w-4xl">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Perguntas <span class="text-gradient-gold">Frequentes</span></h2>
+                <p class="text-gray-400">Tire suas dúvidas antes de dar o próximo passo.</p>
+            </div>
+
+            <div class="space-y-4">
+                <!-- FAQ 1 -->
+                <div class="bg-dark-900 border border-gray-700 rounded-lg overflow-hidden">
+                    <button class="w-full px-6 py-5 text-left focus:outline-none flex justify-between items-center" onclick="toggleFaq('faq1', 'icon1')">
+                        <span class="font-bold text-lg text-white">E se eu não gostar do layout final do site?</span>
+                        <i id="icon1" class="fa-solid fa-chevron-down text-gold-DEFAULT transition-transform duration-300"></i>
+                    </button>
+                    <div id="faq1" class="px-6 pb-5 hidden">
+                        <p class="text-gray-400 leading-relaxed border-t border-gray-800 pt-4">
+                            Antes de colocarmos a página oficialmente no ar, nós enviamos o projeto para sua aprovação final. Você tem direito a solicitar revisões pontuais para garantir que a página fique com a cara e a voz do seu negócio, sem surpresas desagradáveis.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- FAQ 2 -->
+                <div class="bg-dark-900 border border-gray-700 rounded-lg overflow-hidden">
+                    <button class="w-full px-6 py-5 text-left focus:outline-none flex justify-between items-center" onclick="toggleFaq('faq2', 'icon2')">
+                        <span class="font-bold text-lg text-white">Para quem é isso?</span>
+                        <i id="icon2" class="fa-solid fa-chevron-down text-gold-DEFAULT transition-transform duration-300"></i>
+                    </button>
+                    <div id="faq2" class="px-6 pb-5 hidden">
+                        <p class="text-gray-400 leading-relaxed border-t border-gray-800 pt-4">
+                            O serviço foi desenhado para donos de negócios locais, profissionais autônomos, especialistas e infoprodutores que precisam de uma página profissional de alta conversão para vender mais, mas não têm tempo, paciência ou conhecimento técnico para fazer sozinhos.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- FAQ 3 -->
+                <div class="bg-dark-900 border border-gray-700 rounded-lg overflow-hidden">
+                    <button class="w-full px-6 py-5 text-left focus:outline-none flex justify-between items-center" onclick="toggleFaq('faq3', 'icon3')">
+                        <span class="font-bold text-lg text-white">O site será otimizado para celulares?</span>
+                        <i id="icon3" class="fa-solid fa-chevron-down text-gold-DEFAULT transition-transform duration-300"></i>
+                    </button>
+                    <div id="faq3" class="px-6 pb-5 hidden">
+                        <p class="text-gray-400 leading-relaxed border-t border-gray-800 pt-4">
+                            Com certeza. Utilizamos a metodologia Mobile-First para garantir a melhor experiência no dispositivo mais usado pelos seus clientes.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- FAQ 4 -->
+                <div class="bg-dark-900 border border-gray-700 rounded-lg overflow-hidden">
+                    <button class="w-full px-6 py-5 text-left focus:outline-none flex justify-between items-center" onclick="toggleFaq('faq4', 'icon4')">
+                        <span class="font-bold text-lg text-white">Como funciona o processo após o pagamento?</span>
+                        <i id="icon4" class="fa-solid fa-chevron-down text-gold-DEFAULT transition-transform duration-300"></i>
+                    </button>
+                    <div id="faq4" class="px-6 pb-5 hidden">
+                        <p class="text-gray-400 leading-relaxed border-t border-gray-800 pt-4">
+                            Imediatamente após a confirmação do pagamento, você receberá um e-mail com as boas-vindas e um link para um formulário rápido (briefing). Assim que você nos passar as informações básicas do seu negócio por lá, nossa equipe entra em ação e o cronômetro de 3 dias começa a rodar!
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-12 text-center">
+                 <a href="#oferta" class="inline-block bg-metallic-gold text-dark-900 font-bold text-lg py-4 px-10 rounded-lg shadow-lg hover:scale-105 transition-transform duration-300">
+                    Começar meu projeto agora
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO 10: FOOTER -->
+    <footer class="bg-dark-900 py-10 border-t border-gray-800 text-center">
+        <div class="container mx-auto px-6 flex flex-col items-center">
+            
+            <!-- Logo Footer -->
+            <img src="https://i.postimg.cc/bNRcB6mX/Offer_Lead_Brand.png" alt="Logo OfferLead" class="h-12 md:h-16 mb-6 opacity-90 hover:opacity-100 transition-opacity object-contain">
+
+            <p class="text-gray-500 text-sm mb-6">
+                &copy; 2026 - OfferLead - Todos os direitos reservados.
+            </p>
+            
+            <!-- Links de Termos e Políticas -->
+            <div class="flex justify-center flex-wrap gap-4 md:gap-8 mb-6 w-full">
+                <button onclick="openModal('modalTermos')" class="text-gray-400 hover:text-gold-DEFAULT transition-colors text-sm underline decoration-gray-700 underline-offset-4 focus:outline-none">
+                    Termos de Uso
+                </button>
+                <button onclick="openModal('modalPrivacidade')" class="text-gray-400 hover:text-gold-DEFAULT transition-colors text-sm underline decoration-gray-700 underline-offset-4 focus:outline-none">
+                    Políticas de Privacidade
+                </button>
+            </div>
+
+            <p class="text-gray-600 text-xs mt-2 max-w-2xl mx-auto leading-relaxed">
+                Este site não é afiliado ao Facebook ou a qualquer entidade do Facebook. Depois que você sair do Facebook, a responsabilidade não é deles e sim do nosso site.
+            </p>
+        </div>
+    </footer>
+
+    <!-- MODAL: TERMOS DE USO -->
+    <div id="modalTermos" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/80 backdrop-blur-sm opacity-0 transition-opacity duration-300" onclick="closeModalOnOutsideClick(event, 'modalTermos')">
+        <div class="bg-dark-800 border border-gray-700 w-11/12 max-w-3xl max-h-[80vh] rounded-2xl shadow-2xl flex flex-col transform scale-95 transition-transform duration-300 relative">
+            <div class="p-5 md:p-6 border-b border-gray-700 flex justify-between items-center bg-dark-900 rounded-t-2xl">
+                <h3 class="text-xl md:text-2xl font-bold text-white">Termos de Uso</h3>
+                <button onclick="closeModal('modalTermos')" class="text-gray-400 hover:text-white transition-colors focus:outline-none">
+                    <i class="fa-solid fa-xmark text-2xl"></i>
+                </button>
+            </div>
+            <div class="p-5 md:p-8 overflow-y-auto text-gray-300 text-sm md:text-base leading-relaxed custom-scrollbar text-left">
+                <h4 class="font-bold text-white mb-2 text-lg">1. Aceitação dos Termos</h4>
+                <p class="mb-5">Ao acessar e usar este site, você concorda em cumprir e ficar vinculado a estes Termos de Uso. Se você não concordar com qualquer parte destes termos, não deverá usar nosso site ou nossos serviços.</p>
+                
+                <h4 class="font-bold text-white mb-2 text-lg">2. Uso do Serviço</h4>
+                <p class="mb-5">O serviço oferecido pela OfferLead consiste na criação e desenvolvimento de Landing Pages de alta conversão. O prazo estipulado de 3 dias começa a contar exclusivamente a partir do preenchimento completo e aprovação do briefing por parte do cliente.</p>
+                
+                <h4 class="font-bold text-white mb-2 text-lg">3. Propriedade Intelectual</h4>
+                <p class="mb-5">Todo o conteúdo presente neste site, incluindo textos, gráficos, logotipos, ícones e códigos, é de propriedade exclusiva da OfferLead ou de seus licenciadores e está protegido pelas leis de direitos autorais e de propriedade intelectual.</p>
+                
+                <h4 class="font-bold text-white mb-2 text-lg">4. Garantia e Reembolso</h4>
+                <p class="mb-5">Oferecemos garantia incondicional de satisfação na entrega da página. Caso o projeto final não seja aprovado sob justificativas razoáveis de desalinhamento com o que foi respondido no briefing, o reembolso integral poderá ser solicitado antes da publicação e aprovação final do site.</p>
+                
+                <h4 class="font-bold text-white mb-2 text-lg">5. Limitação de Responsabilidade</h4>
+                <p class="mb-0">A OfferLead garante o funcionamento técnico e de design da página. No entanto, não garantimos resultados financeiros específicos (como número exato de vendas ou leads) advindos do uso da Landing Page, visto que tais resultados dependem primariamente de fatores externos do cliente, como fonte de tráfego, qualidade da oferta e capacidade de atendimento comercial.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL: POLÍTICAS DE PRIVACIDADE -->
+    <div id="modalPrivacidade" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/80 backdrop-blur-sm opacity-0 transition-opacity duration-300" onclick="closeModalOnOutsideClick(event, 'modalPrivacidade')">
+        <div class="bg-dark-800 border border-gray-700 w-11/12 max-w-3xl max-h-[80vh] rounded-2xl shadow-2xl flex flex-col transform scale-95 transition-transform duration-300 relative">
+            <div class="p-5 md:p-6 border-b border-gray-700 flex justify-between items-center bg-dark-900 rounded-t-2xl">
+                <h3 class="text-xl md:text-2xl font-bold text-white">Políticas de Privacidade</h3>
+                <button onclick="closeModal('modalPrivacidade')" class="text-gray-400 hover:text-white transition-colors focus:outline-none">
+                    <i class="fa-solid fa-xmark text-2xl"></i>
+                </button>
+            </div>
+            <div class="p-5 md:p-8 overflow-y-auto text-gray-300 text-sm md:text-base leading-relaxed custom-scrollbar text-left">
+                <h4 class="font-bold text-white mb-2 text-lg">1. Coleta de Dados</h4>
+                <p class="mb-5">Coletamos informações pessoais que você nos fornece voluntariamente ao interagir com nosso site, preencher formulários de interesse ou responder ao briefing do projeto. Isso inclui, mas não se limita a: nome, e-mail, número de WhatsApp e detalhes do seu negócio.</p>
+                
+                <h4 class="font-bold text-white mb-2 text-lg">2. Uso das Informações</h4>
+                <p class="mb-5">As informações coletadas são utilizadas exclusivamente para viabilizar a prestação do serviço contratado (criação da sua Landing Page), realizar o atendimento de suporte, processar pagamentos de forma segura e enviar atualizações relevantes sobre o andamento do seu projeto.</p>
+                
+                <h4 class="font-bold text-white mb-2 text-lg">3. Compartilhamento de Dados</h4>
+                <p class="mb-5">Nós preservamos sua privacidade. Não vendemos, alugamos ou repassamos seus dados pessoais a terceiros com finalidades comerciais. Seus dados podem ser compartilhados apenas com plataformas parceiras essenciais para a operação (como gateways de pagamento e servidores de hospedagem), exigindo destes o mesmo nível de segurança e confidencialidade.</p>
+                
+                <h4 class="font-bold text-white mb-2 text-lg">4. Cookies e Tecnologias de Rastreamento</h4>
+                <p class="mb-5">Utilizamos cookies e tecnologias similares (como Pixel do Meta ou Tags do Google) para melhorar a sua experiência de navegação em nosso site, entender anonimamente como os usuários interagem com nossa plataforma e otimizar a entrega dos nossos anúncios publicitários.</p>
+                
+                <h4 class="font-bold text-white mb-2 text-lg">5. Seus Direitos (LGPD)</h4>
+                <p class="mb-0">Em rigorosa conformidade com a Lei Geral de Proteção de Dados (LGPD - Lei nº 13.709/2018), você é o titular dos seus dados. Portanto, você tem o direito garantido de solicitar o acesso, a correção, a atualização ou a exclusão completa dos seus dados pessoais armazenados em nossos sistemas a qualquer momento, bastando enviar uma solicitação através dos nossos canais de atendimento oficiais.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script para controle do FAQ e Modais -->
+    <script>
+        // --- FUNÇÕES DO FAQ ---
+        function toggleFaq(faqId, iconId) {
+            const faqContent = document.getElementById(faqId);
+            const icon = document.getElementById(iconId);
+            
+            if (faqContent.classList.contains('hidden')) {
+                // Abrir
+                faqContent.classList.remove('hidden');
+                icon.classList.add('rotate-180');
+            } else {
+                // Fechar
+                faqContent.classList.add('hidden');
+                icon.classList.remove('rotate-180');
+            }
+        }
+
+        // --- FUNÇÕES DOS MODAIS ---
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            const modalInner = modal.querySelector('div');
+            
+            // Troca de estado para flex (mostra o modal)
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            
+            // Pequeno delay para a transição do CSS agir
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                modalInner.classList.remove('scale-95');
+                modalInner.classList.add('scale-100');
+            }, 10);
+            
+            // Trava o scroll da página de fundo
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            const modalInner = modal.querySelector('div');
+            
+            // Inicia a transição de saída
+            modal.classList.add('opacity-0');
+            modalInner.classList.remove('scale-100');
+            modalInner.classList.add('scale-95');
+            
+            // Oculta o modal após a transição (300ms do Tailwind)
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+                document.body.style.overflow = 'auto'; // Libera o scroll
+            }, 300);
+        }
+
+        // Fecha o modal ao clicar na área escura do fundo (backdrop)
+        function closeModalOnOutsideClick(event, modalId) {
+            if (event.target.id === modalId) {
+                closeModal(modalId);
+            }
+        }
+
+        // --- FUNÇÕES DO CARROSSEL DE PORTFÓLIO ---
+        function scrollCarousel(direction) {
+            const carousel = document.getElementById('portfolioCarousel');
+            // Calcula aproximadamente a largura de um item + gap para rolar
+            const scrollAmount = carousel.clientWidth * 0.8; 
+            
+            if (direction === 1) {
+                carousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+            } else {
+                carousel.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+            }
+        }
+
+        // --- FUNÇÕES DO MENU MOBILE ---
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            const icon = document.getElementById('menuIcon');
+            
+            menu.classList.toggle('hidden');
+            
+            if (menu.classList.contains('hidden')) {
+                icon.classList.remove('fa-xmark');
+                icon.classList.add('fa-bars');
+            } else {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-xmark');
+            }
+        }
+    </script>
+</body>
+</html>
